@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="taipla_wsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="cmt_id" />
+          </Key>
+          <Property Name="cmt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="ref_id" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="system_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="comment" Type="text" Nullable="false" />
+          <Property Name="image_status" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_center">
+          <Key>
+            <PropertyRef Name="food_id" />
+          </Key>
+          <Property Name="food_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_th" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_en" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" />
+          <Property Name="cooking_food" Type="text" />
+          <Property Name="dietetic_food" Type="text" />
+          <Property Name="ingredient" Type="text" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="culture_id" Type="int" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="viewer" Type="int" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="legend_status" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="name_th" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_en" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_culture">
+          <Key>
+            <PropertyRef Name="culture_id" />
+          </Key>
+          <Property Name="culture_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="name_th" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_en" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="food_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="weight" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="legend_status" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="history_search">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="device_id" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="search_text" Type="text" Nullable="false" />
+          <Property Name="condition" Type="text" Nullable="false" />
+          <Property Name="deleted" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="legend">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="legend_type" Type="tinyint" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="media">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ref_id" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="system_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="filename" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="promotion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="res_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="flag" Type="int" Nullable="false" />
+          <Property Name="viewer" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="timestamp" Precision="0" />
+          <Property Name="end_date" Type="timestamp" Precision="0" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant">
+          <Key>
+            <PropertyRef Name="res_id" />
+          </Key>
+          <Property Name="res_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="owner_id" Type="int" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="text" Nullable="false" />
+          <Property Name="province" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="map" Type="text" />
+          <Property Name="latitude" Type="double" />
+          <Property Name="longitude" Type="double" />
+          <Property Name="website" Type="text" />
+          <Property Name="facebook" Type="text" />
+          <Property Name="line" Type="text" />
+          <Property Name="open_time" Type="text" />
+          <Property Name="phone" Type="varchar" MaxLength="255" />
+          <Property Name="tags" Type="text" />
+          <Property Name="car_park" Type="int" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="viewer" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant_ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="res_id" Type="int" Nullable="false" />
+          <Property Name="menu_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="weight" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="legend_status" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant_menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="res_id" Type="int" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="culture_id" Type="int" Nullable="false" />
+          <Property Name="name_th" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="name_en" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="text" />
+          <Property Name="cooking_food" Type="text" />
+          <Property Name="dietetic_food" Type="text" />
+          <Property Name="code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="price" Type="double" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="255" />
+          <Property Name="viewer" Type="int" Nullable="false" />
+          <Property Name="legend_status" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="100" />
+          <Property Name="last_name" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="avatar" Type="varchar" MaxLength="255" />
+          <Property Name="client_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user_device">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="device_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="token" Type="text" Nullable="false" />
+          <Property Name="client_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="expired" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="vote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="system_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ref_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="score" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="timestamp" Precision="0" />
+          <Property Name="updated_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="taipla_wsModelStoreContainer">
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="" store:Type="Tables" />
+          <EntitySet Name="food_center" EntityType="Self.food_center" Schema="" store:Type="Tables" />
+          <EntitySet Name="food_country" EntityType="Self.food_country" Schema="" store:Type="Tables" />
+          <EntitySet Name="food_culture" EntityType="Self.food_culture" Schema="" store:Type="Tables" />
+          <EntitySet Name="food_ingredient" EntityType="Self.food_ingredient" Schema="" store:Type="Tables" />
+          <EntitySet Name="history_search" EntityType="Self.history_search" Schema="" store:Type="Tables" />
+          <EntitySet Name="legend" EntityType="Self.legend" Schema="" store:Type="Tables" />
+          <EntitySet Name="media" EntityType="Self.media" Schema="" store:Type="Tables" />
+          <EntitySet Name="promotion" EntityType="Self.promotion" Schema="" store:Type="Tables" />
+          <EntitySet Name="restaurant" EntityType="Self.restaurant" Schema="" store:Type="Tables" />
+          <EntitySet Name="restaurant_ingredient" EntityType="Self.restaurant_ingredient" Schema="" store:Type="Tables" />
+          <EntitySet Name="restaurant_menu" EntityType="Self.restaurant_menu" Schema="" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="" store:Type="Tables" />
+          <EntitySet Name="user_device" EntityType="Self.user_device" Schema="" store:Type="Tables" />
+          <EntitySet Name="vote" EntityType="Self.vote" Schema="" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="taipla_wsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="cmt_id" />
+          </Key>
+          <Property Name="cmt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="ref_id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="system_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment1" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="image_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_center">
+          <Key>
+            <PropertyRef Name="food_id" />
+          </Key>
+          <Property Name="food_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_th" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="cooking_food" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="dietetic_food" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="ingredient" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="culture_id" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="viewer" Type="Int32" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="legend_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_country">
+          <Key>
+            <PropertyRef Name="country_id" />
+          </Key>
+          <Property Name="country_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="name_th" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_culture">
+          <Key>
+            <PropertyRef Name="culture_id" />
+          </Key>
+          <Property Name="culture_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="name_th" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="food_ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="food_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="weight" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="legend_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="history_search">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="device_id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="search_text" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="condition" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deleted" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="legend">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="legend_type" Type="SByte" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="media">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ref_id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="system_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="filename" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="promotion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="res_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="flag" Type="Int32" Nullable="false" />
+          <Property Name="viewer" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" />
+          <Property Name="end_date" Type="DateTime" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant">
+          <Key>
+            <PropertyRef Name="res_id" />
+          </Key>
+          <Property Name="res_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="owner_id" Type="Int32" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="province" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="map" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="website" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="facebook" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="line" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="open_time" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tags" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="car_park" Type="Int32" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="viewer" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant_ingredient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="res_id" Type="Int32" Nullable="false" />
+          <Property Name="menu_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="weight" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="legend_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="restaurant_menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="res_id" Type="Int32" Nullable="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="culture_id" Type="Int32" Nullable="false" />
+          <Property Name="name_th" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name_en" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="cooking_food" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="dietetic_food" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="viewer" Type="Int32" Nullable="false" />
+          <Property Name="legend_status" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="client_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user_device">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="device_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="expired" Type="DateTime" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="vote">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="system_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ref_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" />
+          <Property Name="updated_date" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="taipla_wsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="comment" EntityType="Self.comment" />
+          <EntitySet Name="food_center" EntityType="Self.food_center" />
+          <EntitySet Name="food_country" EntityType="Self.food_country" />
+          <EntitySet Name="food_culture" EntityType="Self.food_culture" />
+          <EntitySet Name="food_ingredient" EntityType="Self.food_ingredient" />
+          <EntitySet Name="history_search" EntityType="Self.history_search" />
+          <EntitySet Name="legend" EntityType="Self.legend" />
+          <EntitySet Name="media" EntityType="Self.media" />
+          <EntitySet Name="promotion" EntityType="Self.promotion" />
+          <EntitySet Name="restaurant" EntityType="Self.restaurant" />
+          <EntitySet Name="restaurant_ingredient" EntityType="Self.restaurant_ingredient" />
+          <EntitySet Name="restaurant_menu" EntityType="Self.restaurant_menu" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="user_device" EntityType="Self.user_device" />
+          <EntitySet Name="vote" EntityType="Self.vote" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="taipla_wsModelStoreContainer" CdmEntityContainer="taipla_wsEntities">
+          <EntitySetMapping Name="comment">
+            <EntityTypeMapping TypeName="taipla_wsModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="cmt_id" ColumnName="cmt_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="system_name" ColumnName="system_name" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="image_status" ColumnName="image_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="food_center">
+            <EntityTypeMapping TypeName="taipla_wsModel.food_center">
+              <MappingFragment StoreEntitySet="food_center">
+                <ScalarProperty Name="food_id" ColumnName="food_id" />
+                <ScalarProperty Name="name_th" ColumnName="name_th" />
+                <ScalarProperty Name="name_en" ColumnName="name_en" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="cooking_food" ColumnName="cooking_food" />
+                <ScalarProperty Name="dietetic_food" ColumnName="dietetic_food" />
+                <ScalarProperty Name="ingredient" ColumnName="ingredient" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="culture_id" ColumnName="culture_id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="viewer" ColumnName="viewer" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="legend_status" ColumnName="legend_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="food_country">
+            <EntityTypeMapping TypeName="taipla_wsModel.food_country">
+              <MappingFragment StoreEntitySet="food_country">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name_th" ColumnName="name_th" />
+                <ScalarProperty Name="name_en" ColumnName="name_en" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="food_culture">
+            <EntityTypeMapping TypeName="taipla_wsModel.food_culture">
+              <MappingFragment StoreEntitySet="food_culture">
+                <ScalarProperty Name="culture_id" ColumnName="culture_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name_th" ColumnName="name_th" />
+                <ScalarProperty Name="name_en" ColumnName="name_en" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="food_ingredient">
+            <EntityTypeMapping TypeName="taipla_wsModel.food_ingredient">
+              <MappingFragment StoreEntitySet="food_ingredient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="food_id" ColumnName="food_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="legend_status" ColumnName="legend_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="history_search">
+            <EntityTypeMapping TypeName="taipla_wsModel.history_search">
+              <MappingFragment StoreEntitySet="history_search">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="search_text" ColumnName="search_text" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="legend">
+            <EntityTypeMapping TypeName="taipla_wsModel.legend">
+              <MappingFragment StoreEntitySet="legend">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="legend_type" ColumnName="legend_type" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="media">
+            <EntityTypeMapping TypeName="taipla_wsModel.media">
+              <MappingFragment StoreEntitySet="media">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="system_name" ColumnName="system_name" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="promotion">
+            <EntityTypeMapping TypeName="taipla_wsModel.promotion">
+              <MappingFragment StoreEntitySet="promotion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="res_id" ColumnName="res_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="viewer" ColumnName="viewer" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restaurant">
+            <EntityTypeMapping TypeName="taipla_wsModel.restaurant">
+              <MappingFragment StoreEntitySet="restaurant">
+                <ScalarProperty Name="res_id" ColumnName="res_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="map" ColumnName="map" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="line" ColumnName="line" />
+                <ScalarProperty Name="open_time" ColumnName="open_time" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="car_park" ColumnName="car_park" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="viewer" ColumnName="viewer" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restaurant_ingredient">
+            <EntityTypeMapping TypeName="taipla_wsModel.restaurant_ingredient">
+              <MappingFragment StoreEntitySet="restaurant_ingredient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="res_id" ColumnName="res_id" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="legend_status" ColumnName="legend_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restaurant_menu">
+            <EntityTypeMapping TypeName="taipla_wsModel.restaurant_menu">
+              <MappingFragment StoreEntitySet="restaurant_menu">
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="res_id" ColumnName="res_id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="culture_id" ColumnName="culture_id" />
+                <ScalarProperty Name="name_th" ColumnName="name_th" />
+                <ScalarProperty Name="name_en" ColumnName="name_en" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="cooking_food" ColumnName="cooking_food" />
+                <ScalarProperty Name="dietetic_food" ColumnName="dietetic_food" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="viewer" ColumnName="viewer" />
+                <ScalarProperty Name="legend_status" ColumnName="legend_status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="taipla_wsModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_device">
+            <EntityTypeMapping TypeName="taipla_wsModel.user_device">
+              <MappingFragment StoreEntitySet="user_device">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="expired" ColumnName="expired" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vote">
+            <EntityTypeMapping TypeName="taipla_wsModel.vote">
+              <MappingFragment StoreEntitySet="vote">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="system_name" ColumnName="system_name" />
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

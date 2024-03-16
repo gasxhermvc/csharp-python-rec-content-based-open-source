@@ -1,0 +1,13 @@
+.vs
+.vs/*
+.vs/**/*
+
+bin
+bin/*
+bin/**/*
+
+obj
+obj/*
+obj/**/*
+
+.ipynb_checkpoints
